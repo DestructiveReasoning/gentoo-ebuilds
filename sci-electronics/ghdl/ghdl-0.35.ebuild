@@ -10,10 +10,10 @@ SRC_URI="https://github.com/ghdl/ghdl/archive/v$PV.tar.gz"
 LICENSE="GNU GPLv2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="mcode llvm"
-REQUIRED_USE="mcode? (!llvm)"
+IUSE="+mcode llvm"
+REQUIRED_USE="mcode? ( !llvm )"
 
-DEPEND="dev-lang/gnat-gpl llvm? (>=sys-devel/llvm-3.5.0 >=sys-devel/clang-3.5.0)"
+DEPEND="dev-lang/gnat-gpl llvm? ( >=sys-devel/llvm-3.5.0 >=sys-devel/clang-3.5.0 )"
 RDEPEND="${DEPEND}"
 
 CONFIG_PARAMS="--prefix=/usr/local"
@@ -35,10 +35,7 @@ src_configure() {
 	if use llvm; then
 		CONFIG_PARAMS="--with-llvm-config $CONFIG_PARAMS"
 	fi
-	ECONF_SOURCE=$DISTDIR
-	mkdir $DISTDIR/build
-	cd $DISTDIR/build
-	econf $CONFIG_PARAMS || die $CONF_INSTRUCTIONS
+	./configure $CONFIG_PARAMS || die $CONF_INSTRUCTIONS
 }
 
 src_compile() {
