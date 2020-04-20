@@ -16,7 +16,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND="dev-python/typing-extensions
-		>=dev-python/omegaconf-1.4.0"
+		>=dev-python/omegaconf-2.0.0_rc23"
 RDEPEND="${DEPEND}"
 BDEPEND=""
 
